@@ -1,32 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
     <title>Coming Soon</title>
+
+    <!-- Favicon (replace with your file) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             height: 100vh;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-family: Arial;
+            overflow: hidden;
+        }
+
+        /* Subtle animated background */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, #111 0%, #000 70%);
+            animation: moveBg 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBg {
+            0% { transform: translate(0,0); }
+            50% { transform: translate(-10%, -10%); }
+            100% { transform: translate(0,0); }
+        }
+
+        .container {
             text-align: center;
+            padding: 20px;
         }
+
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            letter-spacing: 2px;
+            font-weight: 600;
         }
+
+        .highlight {
+            color: #ffffff;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 2px;
+            background: white;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        h1:hover .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
         p {
-            color: #94a3b8;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #aaa;
+            letter-spacing: 1px;
+        }
+
+        .box {
+            margin-top: 40px;
+            padding: 20px 40px;
+            border: 1px solid #222;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .box:hover {
+            border-color: white;
+            transform: translateY(-5px);
+        }
+
+        .dots {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes blink {
+            0%, 80%, 100% { opacity: 0.2; }
+            40% { opacity: 1; }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 500px) {
+            .box {
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>🚀 Coming Soon</h1>
-        <p>Building something awesome...</p>
+
+<div class="container">
+    <h1>
+        <span class="highlight">Coming Soon</span>
+    </h1>
+
+    <p>Something precise is being built.</p>
+
+    <div class="box">
+        <p>Launching quietly.</p>
+
+        <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
+</div>
+
+<footer>
+    © 2026
+</footer>
+
 </body>
 </html>
-<!-- noting  -->
