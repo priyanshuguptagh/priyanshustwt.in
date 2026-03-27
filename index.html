@@ -148,6 +148,81 @@ footer span:hover {
         padding: 16px 18px;
     }
 }
+
+
+/* ===== TOUCH FEEDBACK (GLOBAL) ===== */
+body {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Subtle press effect anywhere */
+body:active main {
+    transform: scale(0.995);
+}
+
+/* Smooth transition */
+main {
+    transition: transform 0.2s ease;
+}
+
+/* ===== CARD INTERACTION ===== */
+.card {
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+/* Touch press (mobile) */
+.card:active {
+    transform: scale(0.97);
+}
+
+/* Slight floating feel on touch */
+@media (hover: none) {
+    .card {
+        transition: transform 0.3s ease;
+    }
+
+    body:active .card {
+        transform: translateY(2px);
+    }
+}
+
+/* ===== RUBBER SCROLL FEEL ===== */
+/* Makes scroll feel elastic visually */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fake parallax depth */
+.container {
+    transition: transform 0.4s ease;
+}
+
+body:active .container {
+    transform: translateY(2px) scale(0.998);
+}
+
+/* ===== MICRO INTERACTION FOR TEXT ===== */
+h1, .sub {
+    transition: transform 0.2s ease;
+}
+
+body:active h1 {
+    transform: translateY(1px);
+}
+
+body:active .sub {
+    transform: translateY(2px);
+}
+
+/* ===== DOTS FEEL MORE ALIVE ===== */
+.dot {
+    transition: transform 0.2s ease;
+}
+
+body:active .dot {
+    transform: scale(1.4);
+}
 </style>
 </head>
 
