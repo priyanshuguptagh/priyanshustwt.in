@@ -223,6 +223,27 @@ body:active .sub {
 body:active .dot {
     transform: scale(1.4);
 }
+
+/* ===== REMOVE TEXT SELECTION (CLEAN UI) ===== */
+body {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Allow selection only if you ever add inputs later */
+input, textarea {
+    user-select: text;
+}
+
+/* Prevent blue highlight on tap (mobile) */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth transform transitions */
+main, .container {
+    will-change: transform;
+}
 </style>
 </head>
 
@@ -252,4 +273,31 @@ body:active .dot {
 </footer>
 
 </body>
+<script>
+let startY = 0;
+let currentY = 0;
+let moveY = 0;
+
+const main = document.querySelector("main");
+
+window.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+});
+
+window.addEventListener("touchmove", (e) => {
+    currentY = e.touches[0].clientY;
+    moveY = (currentY - startY) * 0.15;
+
+    main.style.transform = `translateY(${moveY}px)`;
+});
+
+window.addEventListener("touchend", () => {
+    main.style.transition = "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)";
+    main.style.transform = "translateY(0)";
+
+    setTimeout(() => {
+        main.style.transition = "";
+    }, 400);
+});
+</script>
 </html>
